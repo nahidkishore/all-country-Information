@@ -18,7 +18,7 @@ function App() {
       <p>Country Loaded: {countries.length}</p>
       <ul>
         {
-          countries.map(country=>country.name)
+          countries.map(country=><li>{country.name}</li>)
         }
       </ul>
       <header className="App-header">
