@@ -14,13 +14,15 @@ function App() {
     .then(data=> setCountries(data))
     .catch(error=>console.log(error))
   },[])
+  const handleAddCountry=(country)=> {
+    console.log('Country added',country)};
   return (
     
     <div className="App">
       <p>Country Loaded: {countries.length}</p>
       
         {
-          countries.map(country=> <Country country={country} key={country.alpha3Code}></Country>)
+          countries.map(country=> <Country country={country} key={country.alpha3Code} handleAddCountry={handleAddCountry}></Country>)
         }
      
       <header className="App-header">
