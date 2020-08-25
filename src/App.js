@@ -4,10 +4,14 @@ import './App.css';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import Country from './components/Country/Country';
+import Cart from './components/Cart/Cart';
 
 
 function App() {
   const [countries,setCountries]=useState([]);
+  const [cart,setCart]=useState([]);
+
+
   useEffect(()=>{
     fetch("https://restcountries.eu/rest/v2/all")
     .then(res=>res.json())
@@ -15,11 +19,16 @@ function App() {
     .catch(error=>console.log(error))
   },[])
   const handleAddCountry=(country)=> {
-    console.log('Country added',country)};
+    const newCart = [...cart,country];
+    setCart(newCart);
+    
+  };
   return (
     
     <div className="App">
-      <p>Country Loaded: {countries.length}</p>
+      <h2>Country Loaded: {countries.length}</h2>
+     <p>Country Added:{cart.length}</p>
+     <Cart cart={cart}></Cart>
       
         {
           countries.map(country=> <Country country={country} key={country.alpha3Code} handleAddCountry={handleAddCountry}></Country>)
